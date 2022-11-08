@@ -14,6 +14,15 @@ NOTE: older REAPER has older libSWELL, can be incompatible with current one. In 
 and copy to your REAPER location.
 
 
+Functionality:
+ * transport as in MCU, including: "track" "<" ">" change banks, "cycle" toggles Loop, "<<" & ">>" navigate markers.
+ * strip controls as in MCU, except:
+    1. "S" (Solo) buttons LED's work
+    2. bank has 7 strips, the last (8th) one is "Master" (normally 9th fader on MCU)
+    3. Solo and Mute for master work as expected, "R" (Record Arm) for master is Ctrl MIDI
+ * 3 buttons in "Marker" section ("Set", "<" and ">") and "R" button in the 8th strip sends
+   Ctrl MIDI (CCs on Ch 5), so can be assiged to REAPER actions.
+
 ------------------------------------------------
 
 This is the REAPER C/C++ extension plug-in mini-SDK

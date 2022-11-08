@@ -380,8 +380,8 @@ class CSurf_MCU : public IReaperControlSurface
     }
 
     void SendCtrlMIDI(int btn){
-      StuffMIDIMessage(1, 0xB5, 102 + btn, 127);
-      StuffMIDIMessage(1, 0xB5, 102 + btn, 0);
+      StuffMIDIMessage(1, 0x90, 100 + btn, 127);
+      StuffMIDIMessage(1, 0x90, 100 + btn, 0);
     }
 
     void UpdateMackieDisplay(int pos, const char *text, int pad)

@@ -1,3 +1,21 @@
+This dirty mod is to create Korg nanoKontrol 2 extension on Linux.
+
+The mod is copied and modified MCU source + modified (in place) csurf_main.cpp/csurf.h + Makefile.
+Alls that is in reaper-plugins/reaper_csurf subdirectory.
+
+Copy compiled binary (works on Ubuntu 18.04) or compile your own.
+
+Build instruction:
+1. follow Justin's advice to get WDL (in the top directory, see original instructions at the end)
+2. cd reaper-plugins/reaper_csurf
+3. make
+
+NOTE: older REAPER has older libSWELL, can be incompatible with current one. In such case recompile libSWELL in WDL/swell (also just "make")
+and copy to your REAPER location.
+
+
+------------------------------------------------
+
 This is the REAPER C/C++ extension plug-in mini-SDK
 
 Paths:

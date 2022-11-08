@@ -34,6 +34,8 @@ extern HWND g_hwnd;
 /* 
 ** Calls back to REAPER (all validated on load)
 */
+extern void (*StuffMIDIMessage)(int mode, int msg1, int msg2, int msg3);
+
 extern double (*DB2SLIDER)(double x);
 extern double (*SLIDER2DB)(double y);
 extern int (*GetNumMIDIInputs)(); 

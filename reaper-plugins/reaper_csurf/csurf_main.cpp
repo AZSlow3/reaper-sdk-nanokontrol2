@@ -15,17 +15,7 @@
 #include "../../WDL/setthreadname.h"
 
 extern reaper_csurf_reg_t 
-  csurf_bcf_reg,
-  csurf_faderport_reg,
-  csurf_faderport2_reg,
-  csurf_hui_reg,
-  csurf_mcu_reg,
-  csurf_mcuex_reg,
-  csurf_tranzport_reg,
-  csurf_alphatrack_reg,
-  csurf_01X_reg,
-  csurf_osc_reg,
-  csurf_www_reg;
+  csurf_nanokontrol2_reg;
 
 
 REAPER_PLUGIN_HINSTANCE g_hInst; // used for dialogs, if any
@@ -39,6 +29,8 @@ void SendLocalOscMessage(void* csurf_osc, const char* msg, int msglen);
 void DestroyLocalOscHandler(void* csurf_osc);
 
 
+
+void (*StuffMIDIMessage)(int mode, int msg1, int msg2, int msg3);
 
 double (*DB2SLIDER)(double x);
 double (*SLIDER2DB)(double y);
@@ -303,6 +295,8 @@ REAPER_PLUGIN_DLL_EXPORT int REAPER_PLUGIN_ENTRYPOINT(REAPER_PLUGIN_HINSTANCE hI
   int errcnt=0;
 #define IMPAPI(x) if (!((*((void **)&(x)) = (void *)rec->GetFunc(#x)))) errcnt++;
 
+  IMPAPI(StuffMIDIMessage)
+
   IMPAPI(update_disk_counters)
   IMPAPI(DB2SLIDER)
   IMPAPI(SLIDER2DB)
@@ -530,24 +524,8 @@ REAPER_PLUGIN_DLL_EXPORT int REAPER_PLUGIN_ENTRYPOINT(REAPER_PLUGIN_HINSTANCE hI
 
   Plugin_Register = rec->Register;
 
-  rec->Register("csurf",&csurf_bcf_reg);
-  rec->Register("csurf",&csurf_faderport_reg);
-  rec->Register("csurf",&csurf_faderport2_reg);
-  rec->Register("csurf",&csurf_hui_reg);
-  rec->Register("csurf",&csurf_mcu_reg);
-  rec->Register("csurf",&csurf_mcuex_reg);
-  rec->Register("csurf",&csurf_tranzport_reg);
-  rec->Register("csurf",&csurf_alphatrack_reg);
-  rec->Register("csurf",&csurf_01X_reg);
-  rec->Register("csurf",&csurf_osc_reg);
-  rec->Register("csurf",&csurf_www_reg);
+  rec->Register("csurf",&csurf_nanokontrol2_reg);
 
-
-  rec->Register("osclocalmsgfunc", (void*)OscLocalMessageToHost);
-
-  rec->Register("createlocaloschandler", (void*)CreateLocalOscHandler);
-  rec->Register("sendlocaloscmessage", (void*)SendLocalOscMessage);
-  rec->Register("destroylocaloschandler", (void*)DestroyLocalOscHandler);
 
   IMPORT_LOCALIZE_RPLUG(rec)
 
